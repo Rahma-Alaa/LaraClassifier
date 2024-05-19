@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laraclassifier/sign_up.dart';
+import 'package:laraclassifier/view/screens/auth/sign_up.dart';
 import 'forgot_password.dart';
 
 class SignInScreen extends StatelessWidget {
