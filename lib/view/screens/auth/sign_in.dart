@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laraclassifier/view/screens/auth/sign_up.dart';
+import '../home/home_screen.dart';
 import 'forgot_password.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -65,6 +66,10 @@ class SignInScreen extends StatelessWidget {
                 ),
 
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (HomeScreen())),
+                );
               },
 
               child: Text('Sign In',
