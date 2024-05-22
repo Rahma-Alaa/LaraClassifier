@@ -13,7 +13,6 @@ class SignInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-
             Text('Sign In',
               style: TextStyle(color: Color(0xFF3DBC24),fontSize: 40),),
 
