@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'cart_screen.dart';
+import 'learning_category.dart';
 import 'menu_screen.dart';
 import 'profile_screen.dart';
 
@@ -115,30 +116,93 @@ class HomeContent extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                CategoryCard('Automobiles', 'assets/icons/car.svg'),
-                CategoryCard('Phones & Tablets', 'assets/icons/mobile.svg'),
-                CategoryCard('Electronics', 'assets/icons/laptop.svg'),
-                CategoryCard('Furniture & Appliances', 'assets/icons/sofa.svg'),
-                CategoryCard('Real estate', 'assets/icons/real-state.svg'),
-                CategoryCard('Animals & Pets', 'assets/icons/pets.svg'),
-                CategoryCard('Fashion', 'assets/icons/fashion.svg'),
-                CategoryCard('Beauty & Well being', 'assets/icons/beauty.svg'),
-                CategoryCard('Jobs', 'assets/icons/jobs.svg'),
-                CategoryCard('Services', 'assets/icons/services.svg'),
-                CategoryCard('Learning', 'assets/icons/learning.svg'),
-                CategoryCard('Local Events', 'assets/icons/Local Events.svg'),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Automobiles', 'assets/icons/car.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Phones & Tablets', 'assets/icons/mobile.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Electronics', 'assets/icons/laptop.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Furniture & Appliances', 'assets/icons/sofa.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Real estate', 'assets/icons/real-state.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Animals & Pets', 'assets/icons/pets.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Fashion', 'assets/icons/fashion.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Beauty & Well being', 'assets/icons/beauty.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (LearningCategory())),
+                );},
+                    child: CategoryCard('Jobs', 'assets/icons/jobs.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (LearningCategory())),
+                );},child: CategoryCard('Services', 'assets/icons/services.svg')),
+                InkWell(
+                  onTap: (){Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => (LearningCategory())),
+                  );},
+                    child: CategoryCard('Learning', 'assets/icons/learning.svg')),
+                InkWell(
+                    onTap: (){Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );},
+                    child: CategoryCard('Local Events', 'assets/icons/Local Events.svg')),
               ],
             ),
           ),
           SectionTitle(title: 'Featured Products'),
-          ProductCard('Product 1', 'assets/images/product1.svg', 29.99),
-          ProductCard('Product 2', 'assets/images/product1.svg', 59.99),
-          ProductCard('Product 3', 'assets/images/product1.svg', 19.99),
-          ProductCard('Product 4', 'assets/images/product1.svg', 19.99),
-          ProductCard('Product 5', 'assets/images/product1.svg', 19.99),
-          ProductCard('Product 6', 'assets/images/product1.svg', 19.99),
-          ProductCard('Product 7', 'assets/images/product1.svg', 19.99),
-          ProductCard('Product 8', 'assets/images/product1.svg', 19.99),
+          GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1, // Adjust aspect ratio to fit image and text
+            ),
+            itemCount: 12,
+            itemBuilder: (context, index) {
+              return ProductCard('Product ${index + 1}', 'assets/images/product1.svg', 19.99 + index * 10);
+            },
+          ),
         ],
       ),
     );
@@ -290,41 +354,56 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(16.0),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            SvgPicture.asset(
-              productImage,
-              height: 60,
-              width: 60,
-            ),
-            SizedBox(width: 16.0),
-            Column(
+    return Center(
+      child: Container(
+        width: 300,
+        height: 220,
+        child: Card(
+          margin: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  productName,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Center(
+                  child: SvgPicture.asset(
+                    productImage,
+                    height: 100,
+                    width: 100,
+                  ),
                 ),
-                Text(
-                  '\$${productPrice.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 16, color: Color(0xFF3DBC24)),
+                //SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 10),
+                    Text(
+                      productName,
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 10),
+                    Spacer(),
+                    IconButton(
+                      icon: Icon(Icons.bookmark_border),
+                      onPressed: () {
+                        // Add bookmark functionality here
+                      },
+                    ),
+                  ],
+                ),
+                Center(
+                  child: Text(
+                    '\$${productPrice.toStringAsFixed(2)}',
+                    style: TextStyle(fontSize: 16, color: Color(0xFF3DBC24)),
+                  ),
                 ),
               ],
             ),
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.bookmark_border),
-              onPressed: () {
-                // Add bookmark functionality here
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+
+
