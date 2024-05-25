@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:laraclassifier/view/screens/home/pets_category.dart';
+import '../home_screen.dart';
+import 'pets_category.dart';
+import '../cart_screen.dart';
 import 'all_category.dart';
 import 'automobiles_category.dart';
-import 'cart_screen.dart';
+import 'beauty_category.dart';
+import 'electronics_category.dart';
+import 'estates_category.dart';
+import 'events_category.dart';
+import 'fashion_category.dart';
+import 'furniture_category.dart';
+import 'jobs_category.dart';
+import 'phones_category.dart';
+import 'services_category.dart';
 
 class LearningCategory extends StatefulWidget {
   @override
@@ -15,19 +25,27 @@ class _LearningCategoryState extends State<LearningCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          children: [
-            Text(
-              'Lara',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF3DBC24)),
-            ),
-            Text(
-              'Classifier',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            ),
-          ],
-        ),
-        actions: [
+        title: InkWell(
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
+
+          child: const Row(
+            children: [
+              Text(
+                'Lara',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF3DBC24)),
+              ),
+              Text(
+                'Classifier',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+            ],
+          ),
+        ),        actions: [
           IconButton(
             icon: Icon(Icons.shopping_cart, color: Color(0xFF3DBC24)),
             onPressed: () {
@@ -52,6 +70,7 @@ class HomeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 8,),
           Padding(
             padding: EdgeInsets.all(16.0),
             child: SearchBar(),
@@ -63,7 +82,7 @@ class HomeContent extends StatelessWidget {
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1, // Adjust aspect ratio to fit image and text
+              childAspectRatio: 1,
             ),
             itemCount: 12,
             itemBuilder: (context, index) {
@@ -87,7 +106,7 @@ class _SearchBarState extends State<SearchBar> {
 
   void navigateToCategory(String category) {
     switch (category) {
-      case 'All Category':
+      case 'All':
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AllCategory()),
@@ -99,31 +118,31 @@ class _SearchBarState extends State<SearchBar> {
           MaterialPageRoute(builder: (context) => AutomobilesCategory()),
         );
         break;
-      case 'Phones & Tablets':
+      case 'Phones':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => PhonesCategory()),
         );
         break;
       case 'Electronics':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => ElectronicsCategory()),
         );
         break;
-      case 'Furniture & Appliances':
+      case 'Furniture':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => FurnitureCategory()),
         );
         break;
-      case 'Real estate':
+      case 'Estates':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => EstatesCategory()),
         );
         break;
-      case 'Animals & Pets':
+      case 'Pets':
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => PetsCategory()),
@@ -132,25 +151,25 @@ class _SearchBarState extends State<SearchBar> {
       case 'Fashion':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => FashionCategory()),
         );
         break;
-      case 'Beauty & Well being':
+      case 'Beauty':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => BeautyCategory()),
         );
         break;
       case 'Jobs':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => JobsCategory()),
         );
         break;
       case 'Services':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => ServicesCategory()),
         );
         break;
       case 'Learning':
@@ -159,15 +178,13 @@ class _SearchBarState extends State<SearchBar> {
           MaterialPageRoute(builder: (context) => LearningCategory()),
         );
         break;
-      case 'Local Events':
+      case 'Events':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PetsCategory()),
+          MaterialPageRoute(builder: (context) => EventsCategory()),
         );
         break;
-    // Add cases for other categories
       default:
-      // Handle other categories
         break;
     }
   }
@@ -176,7 +193,6 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width:0.3,),
         Expanded(
           flex: 3,
           child: Container(
@@ -197,7 +213,6 @@ class _SearchBarState extends State<SearchBar> {
                 navigateToCategory(_selectedCategory);
               },
               decoration: InputDecoration(
-                hintText: 'All Category',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(width: 1),
@@ -346,7 +361,7 @@ class ProductCard extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.bookmark_border),
                       onPressed: () {
-                        // Add bookmark functionality here
+
                       },
                     ),
                   ],

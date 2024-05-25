@@ -47,12 +47,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 25.0),
             _buildEditableField(
               labelText: 'Name',
               controller: _nameController,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 25.0),
             _buildEditableField(
               labelText: 'Email',
               controller: _emailController,

@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'cart_screen.dart';
-import 'learning_category.dart';
+import 'category/automobiles_category.dart';
+import 'category/beauty_category.dart';
+import 'category/electronics_category.dart';
+import 'category/estates_category.dart';
+import 'category/events_category.dart';
+import 'category/fashion_category.dart';
+import 'category/furniture_category.dart';
+import 'category/jobs_category.dart';
+import 'category/learning_category.dart';
+import 'category/pets_category.dart';
+import 'category/phones_category.dart';
+import 'category/services_category.dart';
 import 'menu_screen.dart';
 import 'profile_screen.dart';
 
@@ -47,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             Text(
               'Lara',
@@ -119,61 +130,61 @@ class HomeContent extends StatelessWidget {
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (AutomobilesCategory())),
                     );},
                     child: CategoryCard('Automobiles', 'assets/icons/car.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (PhonesCategory())),
                     );},
                     child: CategoryCard('Phones & Tablets', 'assets/icons/mobile.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (ElectronicsCategory())),
                     );},
                     child: CategoryCard('Electronics', 'assets/icons/laptop.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (FurnitureCategory())),
                     );},
                     child: CategoryCard('Furniture & Appliances', 'assets/icons/sofa.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (EstatesCategory())),
                     );},
                     child: CategoryCard('Real estate', 'assets/icons/real-state.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (PetsCategory())),
                     );},
                     child: CategoryCard('Animals & Pets', 'assets/icons/pets.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (FashionCategory())),
                     );},
                     child: CategoryCard('Fashion', 'assets/icons/fashion.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (BeautyCategory())),
                     );},
                     child: CategoryCard('Beauty & Well being', 'assets/icons/beauty.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => (LearningCategory())),
+                  MaterialPageRoute(builder: (context) => (JobsCategory())),
                 );},
                     child: CategoryCard('Jobs', 'assets/icons/jobs.svg')),
                 InkWell(
                     onTap: (){Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => (LearningCategory())),
+                  MaterialPageRoute(builder: (context) => (ServicesCategory())),
                 );},child: CategoryCard('Services', 'assets/icons/services.svg')),
                 InkWell(
                   onTap: (){Navigator.push(
@@ -184,7 +195,7 @@ class HomeContent extends StatelessWidget {
                 InkWell(
                     onTap: (){Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                      MaterialPageRoute(builder: (context) => (EventsCategory())),
                     );},
                     child: CategoryCard('Local Events', 'assets/icons/Local Events.svg')),
               ],
@@ -220,7 +231,7 @@ class SearchBar extends StatelessWidget {
             child: const TextField(
               cursorColor: Color(0xFF3DBC24),
               decoration: InputDecoration(
-                hintText: 'What',
+                hintText: 'What ?',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.0),
@@ -253,7 +264,7 @@ class SearchBar extends StatelessWidget {
             child: TextField(
               cursorColor: Color(0xFF3DBC24),
               decoration: InputDecoration(
-                hintText: 'Where',
+                hintText: 'Where ?',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(width: 1),
