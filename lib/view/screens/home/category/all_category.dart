@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laraclassifier/view/screens/home/pets_category.dart';
 import 'cart_screen.dart';
-import 'menu_screen.dart';
-import 'profile_screen.dart';
 
-class LearningCategory extends StatefulWidget {
+class AllCategory extends StatefulWidget {
   @override
-  _LearningCategoryState createState() => _LearningCategoryState();
+  _AllCategoryState createState() => _AllCategoryState();
 }
 
-class _LearningCategoryState extends State<LearningCategory> {
+class _AllCategoryState extends State<AllCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             Text(
               'Lara',
@@ -30,6 +29,7 @@ class _LearningCategoryState extends State<LearningCategory> {
           IconButton(
             icon: Icon(Icons.shopping_cart, color: Color(0xFF3DBC24)),
             onPressed: () {
+              // Navigation to the CartScreen
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CartScreen()),
@@ -55,7 +55,7 @@ class HomeContent extends StatelessWidget {
             child: SearchBar(),
           ),
           SizedBox(height: 8,),
-          SectionTitle(title: 'Learning Category'),
+          SectionTitle(title: 'All Category'),
           GridView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -74,51 +74,152 @@ class HomeContent extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
+  @override
+  _SearchBarState createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+  String _selectedCategory = 'All Category';
+  List<String> _categories = ['All Category', 'Automobiles', 'Phones & Tablets', 'Electronics', 'Furniture & Appliances','Real estate', 'Animals & Pets', 'Fashion', 'Beauty & Well being','Jobs', 'Services', 'Learning', 'Local Events']; // Add your categories here
+
+  void navigateToCategory(String category) {
+    switch (category) {
+      case 'All Category':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AllCategory()),
+        );
+        break;
+      case 'Automobiles':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Phones & Tablets':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Electronics':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Furniture & Appliances':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Real estate':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Animals & Pets':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Fashion':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Beauty & Well being':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Jobs':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Services':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+      case 'Learning':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AllCategory()),
+        );
+        break;
+      case 'Local Events':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PetsCategory()),
+        );
+        break;
+    // Add cases for other categories
+      default:
+      // Handle other categories
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        SizedBox(width:0.3,),
         Expanded(
+          flex: 3,
           child: Container(
-            height: 55.0,
-            child: const TextField(
-              cursorColor: Color(0xFF3DBC24),
+            height: 58.0,
+            child: DropdownButtonFormField(
+              value: _selectedCategory,
+              items: _categories.map((category) {
+                return DropdownMenuItem(
+                  value: category,
+                  child: Text(category),
+                );
+              }).toList(),
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedCategory = newValue.toString();
+                });
+                // Call the navigateToCategory function when category changes
+                navigateToCategory(_selectedCategory);
+              },
               decoration: InputDecoration(
-                hintText: 'What',
+                hintText: 'All Category',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
-                  ),
+                  borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(width: 1),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
-                  ),
+                  borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(color: Color(0xFF3DBC24), width: 1),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
-                  ),
+                  borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(color: Colors.black, width: 1),
                 ),
-                prefixIcon: Icon(Icons.keyboard_double_arrow_right_outlined),
               ),
             ),
           ),
         ),
         Expanded(
+          flex: 2,
           child: Container(
-            height: 55.0,
-            child: TextField(
+            height: 58.0,
+            child: const TextField(
               cursorColor: Color(0xFF3DBC24),
               decoration: InputDecoration(
-                hintText: 'Where',
+                hintText: 'What ?',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(width: 1),
@@ -131,32 +232,53 @@ class SearchBar extends StatelessWidget {
                   borderRadius: BorderRadius.zero,
                   borderSide: BorderSide(color: Colors.black, width: 1),
                 ),
-                prefixIcon: Icon(Icons.location_on),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
+            height: 58.0,
+            child: TextField(
+              cursorColor: Color(0xFF3DBC24),
+              decoration: InputDecoration(
+                hintText: 'Where ?',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(color: Color(0xFF3DBC24), width: 1),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(color: Colors.black, width: 1),
+                ),
               ),
             ),
           ),
         ),
         Container(
-          height: 55.0,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF3DBC24),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30.0),
-                  bottomRight: Radius.circular(30.0),
-                ),
-                side: BorderSide(color: Color(0xFF3DBC24)),
-              ),
+          height: 58.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
             ),
-            onPressed: () {
+            color: Color(0xFF3DBC24),
+            border: Border.all(color: Color(0xFF3DBC24)),
+          ),
+          child: InkWell(
+            onTap: () {
               // Add your onPressed code here!
             },
-            icon: Icon(Icons.search, color: Colors.white),
-            label: Text(
-              'Find',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            child: Padding(
+              padding: EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 15), // Adjust padding as needed
+              child: Icon(Icons.search, color: Colors.white),
             ),
+
           ),
         ),
       ],
