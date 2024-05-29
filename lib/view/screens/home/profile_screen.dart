@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laraclassifier/view/screens/auth/sign_in.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -13,14 +14,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize controllers with default values
     _nameController = TextEditingController(text: 'lara classifier');
     _emailController = TextEditingController(text: 'lara.classifier@example.com');
   }
 
   @override
   void dispose() {
-    // Dispose controllers when not needed
     _nameController.dispose();
     _emailController.dispose();
     super.dispose();
@@ -83,9 +82,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             borderSide: BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF3DBC24),),
+            borderSide: BorderSide(color: Color(0xFF3DBC24)),
           ),
-          floatingLabelStyle: TextStyle(color: Color(0xFF3DBC24),),
+          floatingLabelStyle: TextStyle(color: Color(0xFF3DBC24)),
         ),
       ),
     );
@@ -96,8 +95,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       onPressed: () {
         String newName = _nameController.text;
         String newEmail = _emailController.text;
+        // Implement profile update logic
       },
-      child: Text('Update Profile',style: TextStyle(color: Colors.black),),
+      child: Text('Update Profile', style: TextStyle(color: Colors.black)),
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFF3DBC24),
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 30),
@@ -108,13 +108,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildLogoutButton() {
     return ElevatedButton(
       onPressed: () {
-        // Implement the logout logic
+        _showLogoutConfirmationDialog();
       },
-      child: Text('Logout',style: TextStyle(color: Colors.black),),
+      child: Text('Logout', style: TextStyle(color: Colors.black)),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 30),
       ),
+    );
+  }
+
+  void _showLogoutConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('Are you sure you want to logout?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInScreen())
+                );
+              },
+              child: Text('Logout', style: TextStyle(color: Colors.red)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel', style: TextStyle(color: Colors.black)),
+            ),
+          ],
+        );
+      },
     );
   }
 }
