@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:laraclassifier/view/screens/auth/sign_up.dart';
+import '../../../api_service/api_login.dart';
 import '../home/home_screen.dart';
 import 'forgot_password.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+
+  final ApiService apiService = ApiService(baseUrl: 'https://demo.laraclassifier.local/api');
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    try {
+      await apiService.login(emailController.text, passwordController.text);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login successful')));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

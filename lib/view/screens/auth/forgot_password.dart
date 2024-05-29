@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
-class ForgotPasswordScreen extends StatelessWidget {
+
+import '../../../api_service/api_login.dart';
+class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
+
+  @override
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+}
+
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+
+  final ApiService apiService = ApiService(baseUrl: 'https://demo.laraclassifier.local/api');
+  final TextEditingController emailController = TextEditingController();
+
+  Future<void> _resetPassword() async {
+    try {
+      await apiService.resetPassword(emailController.text);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Password reset email sent')));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to reset password: $e')));
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
