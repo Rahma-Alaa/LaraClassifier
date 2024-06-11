@@ -9,15 +9,16 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
+
 class _SignInScreenState extends State<SignInScreen> {
 
-  final ApiService apiService = ApiService(baseUrl: 'https://demo.laraclassifier.local/api');
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> _login() async {
     try {
-      await apiService.login(emailController.text, passwordController.text);
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login successful')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
@@ -41,6 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
             TextFormField(
               cursorColor: Color(0xFF3DBC24),
               cursorErrorColor: Color(0xFF3DBC24),
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 focusedBorder: UnderlineInputBorder(
@@ -54,6 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
             TextFormField(
               cursorColor: Color(0xFF3DBC24),
               cursorErrorColor: Color(0xFF3DBC24),
+              controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
                 focusedBorder: UnderlineInputBorder(
@@ -84,16 +87,28 @@ class _SignInScreenState extends State<SignInScreen> {
                   backgroundColor: Color(0xFF3DBC24),
                 ),
 
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (HomeScreen())),
-                );
+              onPressed: () async {
+                final result = await login(emailController.text, passwordController.text);
+                if( result["success"]) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login success')));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => (HomeScreen(userData: result['result'], authToken: result['extra']['authToken'],)),
+                    ),
+                  );
+                }else{
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed')));
+                }
+
               },
 
               child: Text('Sign In',
               style: TextStyle(color: Colors.black),),
             ),
+
+
+
             SizedBox(height: 10.0),
             Center(child: Text("----------------------- or -----------------------",
             style: TextStyle(color: Colors.grey[700]),)),

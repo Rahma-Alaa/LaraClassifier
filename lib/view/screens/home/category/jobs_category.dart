@@ -29,7 +29,7 @@ class _JobsCategoryState extends State<JobsCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '',)),
             );
           },
 

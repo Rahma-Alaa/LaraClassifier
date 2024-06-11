@@ -10,12 +10,10 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
-  final ApiService apiService = ApiService(baseUrl: 'https://demo.laraclassifier.local/api');
   final TextEditingController emailController = TextEditingController();
 
   Future<void> _resetPassword() async {
     try {
-      await apiService.resetPassword(emailController.text);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Password reset email sent')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to reset password: $e')));

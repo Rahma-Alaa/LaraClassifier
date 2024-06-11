@@ -29,7 +29,7 @@ class _AutomobilesCategoryState extends State<AutomobilesCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '',)),
             );
           },
 

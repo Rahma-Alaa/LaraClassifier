@@ -29,7 +29,7 @@ class _EstatesCategoryState extends State<EstatesCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '',)),
             );
           },
 

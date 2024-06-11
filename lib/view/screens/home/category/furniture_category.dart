@@ -29,7 +29,7 @@ class _FurnitureCategoryState extends State<FurnitureCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '',)),
             );
           },
 

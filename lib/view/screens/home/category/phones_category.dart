@@ -29,7 +29,7 @@ class _PhonesCategoryState extends State<PhonesCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '',)),
             );
           },
 

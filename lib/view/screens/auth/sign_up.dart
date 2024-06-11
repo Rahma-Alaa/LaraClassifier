@@ -11,13 +11,11 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
-  final ApiService apiService = ApiService(baseUrl: 'https://demo.laraclassifier.local/api');
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> _signUp() async {
     try {
-      await apiService.signUp(emailController.text, passwordController.text);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign Up successful')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign Up failed: $e')));

@@ -29,7 +29,7 @@ class _AllCategoryState extends State<AllCategory> {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen(userData: {}, authToken: '')),
             );
           },
 

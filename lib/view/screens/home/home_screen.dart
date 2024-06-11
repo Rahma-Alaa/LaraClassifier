@@ -16,24 +16,12 @@ import 'category/services_category.dart';
 import 'menu_screen.dart';
 import 'profile_screen.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Lara Classifier',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
 class HomeScreen extends StatefulWidget {
+  final Map<String, dynamic> userData;
+  final String authToken;
+
+  HomeScreen({required this.userData,required this.authToken});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -41,12 +29,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    HomeContent(),
-    CartScreen(),
-    ProfileScreen(),
-    MenuScreen(),
-  ];
+  late List<Widget> _widgetOptions;
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      HomeContent(),
+      CartScreen(),
+      ProfileScreen(userData: widget.userData,
+        authToken: widget.authToken,),
+      MenuScreen(),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -128,76 +123,113 @@ class HomeContent extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (AutomobilesCategory())),
-                    );},
-                    child: CategoryCard('Automobiles', 'assets/icons/car.svg')),
+                    );
+                  },
+                  child: CategoryCard('Automobiles', 'assets/icons/car.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (PhonesCategory())),
-                    );},
-                    child: CategoryCard('Phones & Tablets', 'assets/icons/mobile.svg')),
+                    );
+                  },
+                  child: CategoryCard('Phones & Tablets', 'assets/icons/mobile.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (ElectronicsCategory())),
-                    );},
-                    child: CategoryCard('Electronics', 'assets/icons/laptop.svg')),
+                    );
+                  },
+                  child: CategoryCard('Electronics', 'assets/icons/laptop.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (FurnitureCategory())),
-                    );},
-                    child: CategoryCard('Furniture & Appliances', 'assets/icons/sofa.svg')),
+                    );
+                  },
+                  child: CategoryCard('Furniture & Appliances', 'assets/icons/sofa.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (EstatesCategory())),
-                    );},
-                    child: CategoryCard('Real estate', 'assets/icons/real-state.svg')),
+                    );
+                  },
+                  child: CategoryCard('Real estate', 'assets/icons/real-state.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (PetsCategory())),
-                    );},
-                    child: CategoryCard('Animals & Pets', 'assets/icons/pets.svg')),
+                    );
+                  },
+                  child: CategoryCard('Animals & Pets', 'assets/icons/pets.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (FashionCategory())),
-                    );},
-                    child: CategoryCard('Fashion', 'assets/icons/fashion.svg')),
+                    );
+                  },
+                  child: CategoryCard('Fashion', 'assets/icons/fashion.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (BeautyCategory())),
-                    );},
-                    child: CategoryCard('Beauty & Well being', 'assets/icons/beauty.svg')),
+                    );
+                  },
+                  child: CategoryCard('Beauty & Well being', 'assets/icons/beauty.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (JobsCategory())),
-                );},
-                    child: CategoryCard('Jobs', 'assets/icons/jobs.svg')),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (JobsCategory())),
+                    );
+                  },
+                  child: CategoryCard('Jobs', 'assets/icons/jobs.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (ServicesCategory())),
-                );},child: CategoryCard('Services', 'assets/icons/services.svg')),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (ServicesCategory())),
+                    );
+                  },
+                  child: CategoryCard('Services', 'assets/icons/services.svg'),
+                ),
                 InkWell(
-                  onTap: (){Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => (LearningCategory())),
-                  );},
-                    child: CategoryCard('Learning', 'assets/icons/learning.svg')),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => (LearningCategory())),
+                    );
+                  },
+                  child: CategoryCard('Learning', 'assets/icons/learning.svg'),
+                ),
                 InkWell(
-                    onTap: (){Navigator.push(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => (EventsCategory())),
-                    );},
-                    child: CategoryCard('Local Events', 'assets/icons/Local Events.svg')),
+                    );
+                  },
+                  child: CategoryCard('Local Events', 'assets/icons/Local Events.svg'),
+                ),
               ],
             ),
           ),
@@ -383,7 +415,6 @@ class ProductCard extends StatelessWidget {
                     width: 100,
                   ),
                 ),
-                //SizedBox(height: 8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -416,5 +447,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
-

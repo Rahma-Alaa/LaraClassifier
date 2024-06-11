@@ -1,10 +1,21 @@
+import 'dart:convert';
+import '../../../api_service/api_update_user.dart';
+import '../../../api_service/api_logout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:laraclassifier/view/screens/auth/sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
+import 'package:async/async.dart';
 
 class ProfileScreen extends StatefulWidget {
+  final Map<String, dynamic> userData;
+  final String authToken;
+
+  ProfileScreen({required this.userData, required this.authToken});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -14,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _phoneController;
+  String? _photoUrl;
   File? _image;
 
   final ImagePicker _picker = ImagePicker();
@@ -21,10 +33,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: 'lara classifier');
-    _emailController = TextEditingController(text: 'lara.classifier@example.com');
+    _nameController = TextEditingController(text: widget.userData['name']);
+    _emailController = TextEditingController(text: widget.userData['email']);
     _passwordController = TextEditingController(text: '***********');
-    _phoneController = TextEditingController(text: '+971 52 **** ***');
+    _phoneController = TextEditingController(text: widget.userData['phone']);
+    _photoUrl = widget.userData['photo_url'].replaceAll("localhost","10.0.2.2");
+
   }
 
   @override
@@ -41,9 +55,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        _uploadImage(_image!);
       }
     });
   }
+
+  Future<void> _uploadImage(File image) async {
+    var stream = http.ByteStream(DelegatingStream.typed(image.openRead()));
+    var length = await image.length();
+
+    var uri = Uri.parse('http://10.0.2.2/storage/app/default/user.png'); // Replace with your API endpoint
+
+    var request = http.MultipartRequest("POST", uri);
+    var multipartFile = http.MultipartFile('file', stream, length,
+        filename: path.basename(image.path));
+
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      response.stream.transform(utf8.decoder).listen((value) {
+        setState(() {
+          _photoUrl = value; // Update the photo URL from the server response
+        });
+      });
+    } else {
+      // Handle error
+    }
+  }
+
+  Future<void> _logoutUser(int userId) async {
+    try {
+
+      final response = await logoutUser(userId, widget.authToken);
+      print(response);
+      // Call the logoutUser method
+      if (response['success']) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SignInScreen()),
+        );
+      } else {
+        // Handle unsuccessful logout
+        print('Logout failed: ${response['message']}');
+      }
+    } catch (e) {
+      // Handle exception
+      print('Logout failed: $e');
+    }
+  }
+
 
   void _resetPassword() {
     // Implement the password reset logic here
@@ -78,21 +140,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onTap: _pickImage,
               child: Stack(
                 children: [
-                  _image == null
+                  _image == null && _photoUrl != null
                       ? SizedBox(
                     height: 120.0,
                     width: 120.0,
-                    child: SvgPicture.asset(
-                      'assets/images/profile.svg',
-                      placeholderBuilder: (BuildContext context) => CircularProgressIndicator(), // Placeholder widget while loading
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(_photoUrl!),
                     ),
                   )
-                      : ClipOval(
+                      : _image != null
+                      ? ClipOval(
                     child: Image.file(
                       _image!,
                       height: 120.0,
                       width: 120.0,
                       fit: BoxFit.cover,
+                    ),
+                  )
+                      : SizedBox(
+                    height: 120.0,
+                    width: 120.0,
+                    child: SvgPicture.asset(
+                      'assets/images/profile.svg',
+                      placeholderBuilder: (BuildContext context) =>
+                          CircularProgressIndicator(),
                     ),
                   ),
                   Positioned(
@@ -163,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        readOnly: isPassword, // Make the field read-only if it is the password field
+        readOnly: isPassword,
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: TextStyle(color: Colors.grey),
@@ -197,7 +268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         String newEmail = _emailController.text;
         String newPassword = _passwordController.text;
         String newPhone = _phoneController.text;
-        // Implement profile update logic
+        updateUser(widget.userData['id'], newEmail,newName,newPhone);
       },
       child: Text('Update Profile', style: TextStyle(color: Colors.black)),
       style: ElevatedButton.styleFrom(
@@ -230,16 +301,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()),
-                );
+                Navigator.of(context).pop();
+                _logoutUser(widget.userData['id']);
               },
               child: Text('Logout', style: TextStyle(color: Colors.red)),
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: Text('Cancel', style: TextStyle(color: Colors.black)),
             ),

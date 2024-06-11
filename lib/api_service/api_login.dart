@@ -1,93 +1,35 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class ApiService {
-  final String baseUrl;
-  final FlutterSecureStorage storage = FlutterSecureStorage();
+Future<Map<String, dynamic>> login(String email, String password) async {
+  final url = Uri.parse('http://10.0.2.2/api/auth/login');
 
-  ApiService({required this.baseUrl});
+  final headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Content-Language': 'en',
+    'X-AppApiToken': 'YTJjclo1NFptanJMYWV6cTFGYTlsYUNqNVlRYmlYbno=',
+    'X-AppType': 'docs',
+  };
 
-  Future<void> login(String email, String password) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/auth/login'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Content-Language': 'en',
-        'X-AppApiToken': 'Uk1DSFlVUVhIRXpHbWt6d2pIZjlPTG15akRPN2tJTUs=',
-        'X-AppType': 'docs',
-      },
-      body: jsonEncode({
-        'email': email,
-        'password': password,
-        'auth_field': 'email',
-        'captcha_key': 'aut',
-      }),
-    );
+  final body = {
+    'email': email,
+    'password': password,
+    'auth_field': 'email',
+    'phone': 'null',
+    'phone_country': 'null',
+    'captcha_key': 'dolor',
+  };
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data['success']) {
-        await storage.write(key: 'authToken', value: data['extra']['authToken']);
-      } else {
-        throw Exception('Failed to login: ${data['message']}');
-      }
-    } else {
-      throw Exception('Failed to login: ${response.reasonPhrase}');
-    }
-  }
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: jsonEncode(body),
+  );
 
-  Future<void> signUp(String email, String password) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/auth/register'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Content-Language': 'en',
-        'X-AppApiToken': 'Uk1DSFlVUVhIRXpHbWt6d2pIZjlPTG15akRPN2tJTUs=',
-        'X-AppType': 'docs',
-      },
-      body: jsonEncode({
-        'email': email,
-        'password': password,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data['success']) {
-        // Handle successful registration
-      } else {
-        throw Exception('Failed to sign up: ${data['message']}');
-      }
-    } else {
-      throw Exception('Failed to sign up: ${response.reasonPhrase}');
-    }
-  }
-
-  Future<void> resetPassword(String email) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/auth/forgot-password'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Content-Language': 'en',
-        'X-AppApiToken': 'Uk1DSFlVUVhIRXpHbWt6d2pIZjlPTG15akRPN2tJTUs=',
-        'X-AppType': 'docs',
-      },
-      body: jsonEncode({
-        'email': email,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (!data['success']) {
-        throw Exception('Failed to reset password: ${data['message']}');
-      }
-    } else {
-      throw Exception('Failed to reset password: ${response.reasonPhrase}');
-    }
+  if (response.statusCode == 200 || response.statusCode ==400) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to login: ${response.reasonPhrase}');
   }
 }
