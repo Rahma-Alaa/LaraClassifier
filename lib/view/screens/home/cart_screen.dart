@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laraclassifier/view/screens/home/payment_screen.dart';
+
 
 class CartScreen extends StatelessWidget {
   @override
@@ -15,7 +17,10 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            // Add checkout functionality here
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PaymentScreen()),
+            );
           },
           child: Text('Checkout',style: TextStyle(color: Colors.black),
           ),
