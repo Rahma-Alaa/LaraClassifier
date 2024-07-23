@@ -93,14 +93,11 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
 
 ## ScreenRecord
 
-# My Project
 
 Here is an embedded video demonstration:
 
-<video width="600" controls>
-  <source src="https://drive.google.com/uc?export=download&id=1cUq7b2zDDy8Jd5v42nA2gfg32tGdppsA" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](https://github.com/your-repo/path/to/thumbnail.png)](https://drive.google.com/file/d/1cUq7b2zDDy8Jd5v42nA2gfg32tGdppsA/view?usp=drivesdk)
+
 
 
 
