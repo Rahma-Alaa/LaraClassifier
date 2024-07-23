@@ -42,7 +42,7 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
   </tr>
   <tr>
     <th>Login Failed</th>
-    <th>Foret Password</th>
+    <th>Forget Password</th>
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/75613305-08f4-458b-8478-09abfc4a08ad" alt="iPhone 13 Pro Max 6" height="300"></td>
@@ -57,16 +57,16 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
     <td><img src="https://github.com/user-attachments/assets/816edc5a-5b6f-4be8-8aee-54addc8d77e8" alt="iPhone 13 Pro Max 9" height="300"></td>
   </tr>
   <tr>
-    <th>Intro_10</th>
-    <th>Intro_11</th>
+    <th>Category</th>
+    <th>Filter Category</th>
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/92543e24-bd0a-4975-85c4-826ab547e55b" alt="iPhone 13 Pro Max 10" height="300"></td>
     <td><img src="https://github.com/user-attachments/assets/e6c00240-974e-4d57-b843-185e9a38be98" alt="iPhone 13 Pro Max 11" height="300"></td>
   </tr>
   <tr>
-    <th>Intro_12</th>
-    <th>Intro_13</th>
+    <th>Checkout</th>
+    <th>Payment</th>
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/18fa8b1d-d72a-4727-ba88-693782a54fcd" alt="iPhone 13 Pro Max 12" height="300"></td>
