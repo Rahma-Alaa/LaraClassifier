@@ -17,4 +17,4 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
 
 | Splash_Screen | Intro_1 |
 |---|---|
-![iPhone-13-PRO-MAX-localhost](https://github.com/user-attachments/assets/8e7aa1fa-b729-4cc4-855a-068ae0e74a7c)height="300
+(https://github.com/user-attachments/assets/8e7aa1fa-b729-4cc4-855a-068ae0e74a7c)
