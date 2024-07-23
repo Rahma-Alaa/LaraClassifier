@@ -1,4 +1,3 @@
-![iPhone-13-PRO-MAX-localhost](https://github.com/user-attachments/assets/7c0dd3ea-ad44-42e5-8fa9-9c2e6ef2265e)# laraclassifier
 
 ## The Purpose
 
@@ -94,11 +93,11 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
 
 ## ScreenRecord
 
-
 <video width="600" controls>
-  <source src="https://drive.google.com/uc?export=download&id=FILE_ID" type="video/webm">
-  Your browser does not support the video tag.
+  <source src="https://drive.google.com/uc?export=download&id=1cUq7b2zDDy8Jd5v42nA2gfg32tGdppsA" type="video/mp4">
 </video>
+
+
 
 
 
