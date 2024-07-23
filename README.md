@@ -32,7 +32,75 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
     <td><img src="https://github.com/user-attachments/assets/4b58a0b0-243e-4cc5-8368-c0fe283e44ec" alt="iPhone 13 Pro Max 2" height="300"></td>
     <td><img src="https://github.com/user-attachments/assets/a335aaf0-23a5-4980-b200-3f548fb740b5" alt="iPhone 13 Pro Max 3" height="300"></td>
   </tr>
+  <tr>
+    <th>Intro_4</th>
+    <th>Intro_5</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/f85f9b20-04ea-4783-b26c-36b975ca95aa" alt="iPhone 13 Pro Max 4" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/5cedfaa3-524d-47c8-b262-698257682b01" alt="iPhone 13 Pro Max 5" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_6</th>
+    <th>Intro_7</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/75613305-08f4-458b-8478-09abfc4a08ad" alt="iPhone 13 Pro Max 6" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/d5c7f1c7-5947-4436-b3c3-01a1fe069475" alt="iPhone 13 Pro Max 7" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_8</th>
+    <th>Intro_9</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/6675bd6e-a2bf-473c-bb98-9ee459f87353" alt="iPhone 13 Pro Max 8" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/816edc5a-5b6f-4be8-8aee-54addc8d77e8" alt="iPhone 13 Pro Max 9" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_10</th>
+    <th>Intro_11</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/92543e24-bd0a-4975-85c4-826ab547e55b" alt="iPhone 13 Pro Max 10" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/e6c00240-974e-4d57-b843-185e9a38be98" alt="iPhone 13 Pro Max 11" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_12</th>
+    <th>Intro_13</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/18fa8b1d-d72a-4727-ba88-693782a54fcd" alt="iPhone 13 Pro Max 12" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/6a0e65ad-be53-4f28-8caf-2e3fbf9b9e06" alt="iPhone 13 Pro Max 13" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_14</th>
+    <th>Intro_15</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/ea639542-54b3-4911-8e94-e3d6e61cc07c" alt="iPhone 13 Pro Max 14" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/752e4ae8-993e-4e8a-b885-864e4799c8d5" alt="iPhone 13 Pro Max 15" height="300"></td>
+  </tr>
+  <tr>
+    <th>Intro_16</th>
+    <th>Intro_17</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/e1b3c81b-0070-4653-832e-1c2baa7dd6dc" alt="iPhone 13 Pro Max 16" height="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/8c5f6a5f-1bf0-4b5e-aba8-ac3ad628ff4b" alt="iPhone 13 Pro Max 17" height="300"></td>
+  </tr>
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
