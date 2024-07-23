@@ -22,6 +22,8 @@ By developing the LaraClassifier application with Flutter, we aim to leverage th
 
 <table>
   <tr>
+    | Splash_Screen | Intro_1 |
+    |---|---|
     <td><img src="https://github.com/user-attachments/assets/70168ae3-d46e-4889-884a-27a697dd9d9c" alt="iPhone 13 Pro Max" height="300"></td>
     <td><img src="https://github.com/user-attachments/assets/2fc0dae3-9388-428e-988f-bb70eb836165" alt="iPhone 13 Pro Max 1" height="300"></td>
   </tr>
